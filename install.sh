@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "======================================="
-echo "🔧 INSTALLER: Apache + PHP + FFmpeg + MySQL + DB Setup"
+echo "🔧 INSTALLER: Apache + FFmpeg + MySQL + DB Setup"
 echo "======================================="
 
 # Update & Upgrade
@@ -13,11 +13,6 @@ echo "🌐 Installing Apache..."
 sudo apt install -y apache2
 sudo systemctl enable apache2
 sudo systemctl start apache2
-
-# Install PHP and modules
-echo "🧠 Installing PHP..."
-sudo apt install -y php libapache2-mod-php php-mysql
-sudo systemctl restart apache2
 
 # Install FFmpeg
 echo "🎞️ Installing FFmpeg..."
@@ -46,15 +41,11 @@ CREATE TABLE IF NOT EXISTS cameras (
 );
 EOF
 
-# Tes PHP (optional)
-echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php > /dev/null
-
 # Info
 echo ""
 echo "✅ INSTALLATION COMPLETE!"
 echo "-------------------------"
 echo "🕸 Apache Web:     http://localhost/"
-echo "🧠 PHP Test Page:  http://localhost/info.php"
 echo "🎞 FFmpeg Path:    $(which ffmpeg)"
 echo "🛢 MySQL DB:       live"
 echo "📦 Table:          cameras"
